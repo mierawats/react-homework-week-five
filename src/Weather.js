@@ -10,11 +10,17 @@ export default function Weather() {
             <input
               type="search"
               placeholder="Enter a City"
-              className="form-control"
+              className="form-control fs-5"
+              autoFocus="on"
+              required
             />
           </div>
           <div className="col-3">
-            <input type="submit" value="Search" className="btn btn-primary" />
+            <input
+              type="submit"
+              value="Search"
+              className="btn btn-primary w-100 fs-5"
+            />
           </div>
         </div>
       </form>
@@ -23,15 +29,20 @@ export default function Weather() {
         <li>Wednesday 07:00</li>
         <li>Mostly Cloudy</li>
       </ul>
-      <div className="row">
-        <div className="col-6">
+      <div className="row mt-3">
+        <div className="col-2">
           <img
-            src="#https://ssl.gstatic.com/onebox/weather/64/rain_heavy.png"
+            src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/clear-sky-day.png"
             alt="Mostly Cloudy"
           />
-          <p>6°C</p>
         </div>
-        <div className="col-6">
+        <div className="col-4 text-start m-auto">
+          <div className="tempdata">
+            <span className="temperature">7</span>
+            <span className="unit">°C</span>
+          </div>
+        </div>
+        <div className="col-6 m-auto">
           <ul>
             <li>Precipitation: 15%</li>
             <li>Humidity: 75%</li>
