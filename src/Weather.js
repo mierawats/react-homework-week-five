@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import "./Weather.css";
 import LoaderSpinner from "./LoaderSpinner";
+import FormattedDate from "./FormattedDate";
 
 export default function Weather(props) {
   const [weatherData, setWeatherData] = useState({ ready: false });
@@ -14,7 +15,7 @@ export default function Weather(props) {
       wind: response.data.wind.speed,
       feelslike: response.data.temperature.feels_like,
       description: response.data.condition.description,
-      time: "Wednesday 07:00",
+      time: new Date(response.data.time * 1000),
       city: response.data.city,
       iconUrl: response.data.condition.icon_url,
     });
@@ -45,7 +46,9 @@ export default function Weather(props) {
         </form>
         <h1>{weatherData.city}</h1>
         <ul>
-          <li>{weatherData.time}</li>
+          <li>
+            <FormattedDate date={weatherData.time} />
+          </li>
           <li className="text-capitalize">{weatherData.description}</li>
         </ul>
         <div className="row mt-3">
