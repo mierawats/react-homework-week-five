@@ -24,7 +24,7 @@ function App() {
         </a>
         , and hosted by {""}
         <a
-          href="https://vercel.com/mieras-projects-043d06f5"
+          href="https://react-homework-week-five.vercel.app/"
           target="_blank"
           rel="noreferrer"
         >
