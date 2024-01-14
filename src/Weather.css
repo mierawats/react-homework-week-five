@@ -19,6 +19,10 @@
   padding: 0;
 }
 
+.Weather .weatherDetails {
+  padding-left: 80px;
+}
+
 .Weather li {
   font-size: 16px;
   font-weight: 80;
@@ -40,6 +44,7 @@
 .Weather .tempdata {
   color: black;
 }
+
 .Weather .temperature {
   font-size: 72px;
   font-weight: 400;
