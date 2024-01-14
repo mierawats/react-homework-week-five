@@ -2,16 +2,24 @@ import React, { useState } from "react";
 import axios from "axios";
 import "./Weather.css";
 
-export default function Weather() {
-  const [ready, setReady] = useState(false);
-  const [temperature, setTemperature] = useState(null);
+export default function Weather(props) {
+  const [weatherData, setWeatherData] = useState({ ready: false });
   function handleResponse(response) {
     console.log(response.data);
-    setTemperature(response.data.temperature.current);
-    setReady(true);
+    setWeatherData({
+      ready: true,
+      temperature: response.data.temperature.current,
+      humidity: response.data.temperature.humidity,
+      wind: response.data.wind.speed,
+      feelslike: response.data.temperature.feels_like,
+      description: response.data.condition.description,
+      time: "Wednesday 07:00",
+      city: response.data.city,
+      iconUrl: response.data.condition.icon_url,
+    });
   }
 
-  if (ready) {
+  if (weatherData.ready) {
     return (
       <div className="Weather">
         <form>
@@ -34,29 +42,28 @@ export default function Weather() {
             </div>
           </div>
         </form>
-        <h1>New York</h1>
+        <h1>{weatherData.city}</h1>
         <ul>
-          <li>Wednesday 07:00</li>
-          <li>Mostly Cloudy</li>
+          <li>{weatherData.time}</li>
+          <li className="text-capitalize">{weatherData.description}</li>
         </ul>
         <div className="row mt-3">
           <div className="col-2">
-            <img
-              src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/clear-sky-day.png"
-              alt="Mostly Cloudy"
-            />
+            <img src={weatherData.iconUrl} alt={weatherData.description} />
           </div>
           <div className="col-4 text-start m-auto">
             <div className="tempdata">
-              <span className="temperature">{Math.round(temperature)}</span>
+              <span className="temperature">
+                {Math.round(weatherData.temperature)}
+              </span>
               <span className="unit">°C</span>
             </div>
           </div>
           <div className="col-6 m-auto">
             <ul>
-              <li>Precipitation: 15%</li>
-              <li>Humidity: 75%</li>
-              <li>Wind: 12 km/h</li>
+              <li>Feels Like: {Math.round(weatherData.feelslike)}°C</li>
+              <li>Humidity: {weatherData.humidity}%</li>
+              <li>Wind: {weatherData.wind} m/s</li>
             </ul>
           </div>
         </div>
@@ -64,8 +71,7 @@ export default function Weather() {
     );
   } else {
     const apiKey = "cf804oa134f4b8cta94fba1330643173";
-    let city = "New York";
-    let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
+    let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${props.defaultCity}&key=${apiKey}&units=metric`;
     axios.get(apiUrl).then(handleResponse);
 
     return "Loading...";
