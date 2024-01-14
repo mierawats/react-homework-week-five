@@ -7,7 +7,7 @@ export default function Weather() {
   const [temperature, setTemperature] = useState(null);
   function handleResponse(response) {
     console.log(response.data);
-    setTemperature(response.data.main.temp);
+    setTemperature(response.data.temperature.current);
     setReady(true);
   }
 
@@ -48,7 +48,7 @@ export default function Weather() {
           </div>
           <div className="col-4 text-start m-auto">
             <div className="tempdata">
-              <span className="temperature">Math.Round({temperature})</span>
+              <span className="temperature">{Math.round(temperature)}</span>
               <span className="unit">°C</span>
             </div>
           </div>
@@ -65,7 +65,7 @@ export default function Weather() {
   } else {
     const apiKey = "cf804oa134f4b8cta94fba1330643173";
     let city = "New York";
-    let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}units=metric`;
+    let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
     axios.get(apiUrl).then(handleResponse);
 
     return "Loading...";
