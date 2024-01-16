@@ -16,7 +16,7 @@ function App() {
         </a>
         , is an open-sourced on {""}
         <a
-          href="https://github.com/mierawats/react-homework-week-five"
+          href="https://github.com/mierawats/react-weather-forecast-website"
           target="_blank"
           rel="noreferrer"
         >
@@ -24,7 +24,7 @@ function App() {
         </a>
         , and hosted by {""}
         <a
-          href="https://react-homework-week-five.vercel.app/"
+          href="https://react-weather-forecast-website.vercel.app/"
           target="_blank"
           rel="noreferrer"
         >
