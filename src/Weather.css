@@ -60,3 +60,12 @@
   top: -38px;
   margin-left: 5px;
 }
+
+.WeatherForecast {
+  text-align: center;
+}
+
+.WeatherForecast-icon img {
+  margin: 0 auto;
+  width: 80px;
+}
